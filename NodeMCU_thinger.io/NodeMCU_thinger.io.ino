@@ -33,7 +33,10 @@ void setup() {
   // HUBUNGKAN KE THINGER.IO
   thing.add_wifi(ssid, password);
 
-  // MENGIRIM NILAI KE THINGER.IO
+  // MENERIMA DATA DARI THINGER.IO
+  thing["led"] << digitalPin(LED_BUILTIN);
+
+  // MENGIRIM DATA KE THINGER.IO
   thing["DHT22"] >> [](pson & out) {
     out["Temperature"]  = t;
     out["Humidity"]     = h;
