@@ -1,0 +1,34 @@
+LM35
+merah VCC
+kuning Data
+hitam GND
+
+https://thingspeak.com/channels
+
+https://sgp1.blynk.cloud/dashboard/454919/global/devices/3514341/organization/454919/devices/2094490/dashboard
+
+===================== PORTS ============================
+
+Since I can't reproduce the fault, I can't check whether it will help, but you might try uninstalling and then reinstalling the driver in case that will help. I'll provide instructions:
+
+Close Arduino IDE if it is running.
+Connect the Arduino board to your computer with a USB cable.
+Open the Windows Device Manager.
+Select View > Devices by type from the Device Manager menus.
+Open the "View" menu.
+If there is a ✓ to the left of the "Show hidden devices" menu item, click on "Show hidden devices" to disable it.
+Open the "Ports (COM & LPT)" section of the Device Manager tree.
+You should see a port identified as "USB-SERIAL CH340 (COM_n_)" under the "Ports (COM & LPT)" section (where "COM_n_" is some serial port e.g., COM4). Right click on that item.
+A context menu will open.
+Select "Uninstall device" from the context menu.
+An "Uninstall Device" dialog will open.
+Check the box next to "☐ Attempt to remove the driver for this device" in the "Uninstall Device" dialog.
+Click the "Uninstall" button.
+Wait for the uninstallation process to finish.
+Unplug the USB cable of the Arduino board from your computer.
+Wait for the Device Manager tree to reload.
+Connect the USB cable of the Arduino board to your computer.
+Wait for the "USB-SERIAL CH340 (COM_n_)" port to reappear under the "Ports (COM & LPT)" section of the Device Manager tree.
+My experience is that the device will be reinstalled automatically by Windows. However, it is maybe possible that the driver removal will actually have been accomplished by the above instructions, in which case it will be necessary to reinstall the driver. If this happens to you, please let me know and I'll provide instructions for installing the driver.
+
+Once the port has reappeared in Device Manager, start Arduino IDE again and check to see whether the problem still occurs.
