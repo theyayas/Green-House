@@ -32,3 +32,37 @@ Wait for the "USB-SERIAL CH340 (COM_n_)" port to reappear under the "Ports (COM 
 My experience is that the device will be reinstalled automatically by Windows. However, it is maybe possible that the driver removal will actually have been accomplished by the above instructions, in which case it will be necessary to reinstall the driver. If this happens to you, please let me know and I'll provide instructions for installing the driver.
 
 Once the port has reappeared in Device Manager, start Arduino IDE again and check to see whether the problem still occurs.
+
+
+https://backend.thinger.io/console/devices/info
+
+username	: theyayas
+device ID 	: NodeMCU_DHT22
+credential	: Tmi9VdBiGHtC8scg
+https://backend.thinger.io/dashboards/Green_House?authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJEYXNoYm9hcmRfR3JlZW5fSG91c2UiLCJzdnIiOiJhcC1zb3V0aGVhc3QuYXdzLnRoaW5nZXIuaW8iLCJ1c3IiOiJ0aGV5YXlhcyJ9.A1YR3lXZaLAL5WAy9nxJK3s0JUqlhUg84wG3tQrULUI
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJEYXNoYm9hcmRfR3JlZW5fSG91c2UiLCJzdnIiOiJhcC1zb3V0aGVhc3QuYXdzLnRoaW5nZXIuaW8iLCJ1c3IiOiJ0aGV5YXlhcyJ9.A1YR3lXZaLAL5WAy9nxJK3s0JUqlhUg84wG3tQrULUI
+
+device ID	: Switch
+credential	: CSsDzNA5_nh-rgLa
+
+relay
+Normally Closed (NC)	: LOW -> OFF, HIGH -> ON
+Normally Open (NO	)	: LOW -> ON, HIGH -> OFF
+
+Sumber tegangan ke NC/NO, Pompa ke COM
+
+pompa hiu: merah positif, hijau negatif
+
+Yang harus dibeli: 
+1. 1 USB micro (charger android lama)
+2. Adaptor USB 2 output
+3. Pompa						
+4. Power supply 12V 4-10A
+5. Colokan ujung 1
+6. Jack DC Female (5.5 x 2.1) mm
+
+
+fileyas
+Switch
+UdrjW1To&LcrA5lQ
