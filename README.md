@@ -1,5 +1,5 @@
 # What to know
-This project is focused on Green House Project using DHT22 Humidity Sensor, thinger.io as the IoT server, and Water Pump as the actuator. The server is expected to do "monitoring and controlling the green house condition"
+This project is focused on Green House Project using DHT22 Humidity Sensor, thinger.io as the IoT server, and Water Pump as the actuator. The server is expected to be able to do "monitoring and controlling the green house condition"
 
 # Installation and Configurations
 1. Download Arduino IDE from https://www.arduino.cc/en/software and install it
