@@ -6,10 +6,6 @@
 #define DEVICE_ID "NodeMCU_DHT22"
 #define DEVICE_CREDENTIAL "Tmi9VdBiGHtC8scg"
 
-//#define USERNAME "fileyas"
-//#define DEVICE_ID "Switch"
-//#define DEVICE_CREDENTIAL "UdrjW1To&LcrA5lQ"
-
 // PIN UNTUK RELAY
 #define relay 5
 
@@ -17,11 +13,11 @@
 ThingerESP8266 thing(USERNAME, DEVICE_ID, DEVICE_CREDENTIAL);
 
 // KONFIGURASI WIFI
-//const char* ssid = "Perpustakaan Bergerak Free Wifi";
-//const char* password = "vomi0406";
+const char* ssid = "Perpustakaan Bergerak Free Wifi";
+const char* password = "vomi0406";
 
-const char* ssid = "KOPI DARI HATI";
-const char* password = "kopidarihatipetung3";
+//const char* ssid = "KOPI DARI HATI";
+//const char* password = "kopidarihatipetung3";
 
 // VARIABLE BACA DATA SENSOR
 float t, h;
@@ -29,6 +25,9 @@ float t, h;
 void setup() {
   Serial.begin(9600);
   pinMode(relay, OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT); 
+
+  digitalWrite(relay, HIGH); // untuk set pin relay agar OFF. Default LOW, maka relay ON
 
   // KONEKSI KE WIFI
   WiFi.begin(ssid, password);
@@ -54,6 +53,7 @@ void setup() {
 }
 
 void loop() {
+
   thing.handle();
 
   // MEMBACA DATA DARI ARDUINO UNO
