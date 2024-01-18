@@ -13,17 +13,23 @@
 ThingerESP8266 thing(USERNAME, DEVICE_ID, DEVICE_CREDENTIAL);
 
 // KONFIGURASI WIFI
-const char* ssid = "Perpustakaan Bergerak Free Wifi";
-const char* password = "vomi0406";
+const char* ssid = "Bungolang Y";
+const char* password = "tanyagading";
 
-//const char* ssid = "KOPI DARI HATI";
-//const char* password = "kopidarihatipetung3";
+// KONSTANTA SOIL MOISTURE SENSOR
+const int dry = 720; // Nilai ketika kering
+const int wet = 600; // Nilai ketika basah
+
+int soilMoistureValue = 0;
+int soilmoisturepercent = 0;
 
 // VARIABLE BACA DATA SENSOR
 float t, h;
 
 void setup() {
   Serial.begin(9600);
+
+  // SETTINGAN PIN
   pinMode(relay, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT); 
 
@@ -48,14 +54,15 @@ void setup() {
   // MENGIRIM DATA KE THINGER.IO
   thing["DHT22"] >> [](pson & out) {
     out["Temperature"]  = t;
-    out["Humidity"]     = h;
+    out["Humidity"]     = soilmoisturepercent;
   };
 }
 
 void loop() {
-
-  thing.handle();
-
+  // MEMBACA NILAI SENSOR SOIL MOISTURE
+  soilMoistureValue = analogRead(A0);
+  soilmoisturepercent = map(soilMoistureValue, dry, wet, 0, 100);
+  
   // MEMBACA DATA DARI ARDUINO UNO
   if (Serial.available()>0){
     String data = Serial.readStringUntil('\n'); //membaca baris
@@ -69,4 +76,15 @@ void loop() {
       Serial.println(h);
     }
   }
+
+  // ATUR POMPA ON/OFF BERDASARKAN NILAI SENSOR SOIL MOISTURE
+  if (soilmoisturepercent > 60){
+    digitalWrite(relay, HIGH);
+  }
+  else if(soilmoisturepercent < 31){
+    digitalWrite(relay, LOW);
+  }
+
+  thing.handle();
+  delay(200);
 }
