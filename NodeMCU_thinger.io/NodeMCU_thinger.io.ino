@@ -16,6 +16,7 @@ DHT dht(dhtPin, dhtType);
 
 // PIN UNTUK RELAY
 #define relay 5
+String relay2;
 
 // LCD
 LiquidCrystal_I2C lcd(0x27, 16, 2);
@@ -24,13 +25,12 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 ThingerESP8266 thing(USERNAME, DEVICE_ID, DEVICE_CREDENTIAL);
 
 // KONFIGURASI WIFI
-const char* ssid = "Bungolang Y";
-const char* password = "tanyagading";
+const char* ssid = "KANTORDESA_BUMDES";
+const char* password = "11112222";
 
 // KONSTANTA SOIL MOISTURE SENSOR
 const int dry = 720; // Nilai ketika kering
 const int wet = 600; // Nilai ketika basah
-
 int soilMoistureValue = 0;
 int soilmoisturepercent = 0;
 
@@ -71,6 +71,7 @@ void setup() {
   thing["DHT22"] >> [](pson & out) {
     out["Temperature"]  = t;
     out["Humidity"]     = soilmoisturepercent;
+    out["Pompa"]        = relay2;
   };
 }
 
@@ -97,8 +98,8 @@ void loop() {
   t = dht.readTemperature();
   h = dht.readHumidity();
 
-  lcd.setCursor(2, 0);
-  lcd.println(" Condition    ");
+  //lcd.setCursor(2, 0);
+  //lcd.println(" Condition    ");
 
   lcd.setCursor(0, 1);
   lcd.print("T:");
@@ -113,9 +114,15 @@ void loop() {
   // ATUR POMPA ON/OFF BERDASARKAN NILAI SENSOR SOIL MOISTURE
   if (soilmoisturepercent > 60){
     digitalWrite(relay, HIGH);
+    lcd.setCursor(2, 0);
+    lcd.println(" POMPA : OFF    ");
+    relay2 = "POMPA OFF";
   }
   else if(soilmoisturepercent < 31){
     digitalWrite(relay, LOW);
+    lcd.setCursor(2, 0);
+    lcd.println(" POMPA : ON    ");
+    relay2 = "POMPA ON";
   }
 
   thing.handle();
