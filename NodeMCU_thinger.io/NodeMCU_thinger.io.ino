@@ -29,8 +29,8 @@ const char* ssid = "KANTORDESA_BUMDES";
 const char* password = "11112222";
 
 // KONSTANTA SOIL MOISTURE SENSOR
-const int dry = 720; // Nilai ketika kering
-const int wet = 600; // Nilai ketika basah
+const int dry = 675; // Nilai ketika kering 689
+const int wet = 609; // Nilai ketika basah 
 int soilMoistureValue = 0;
 int soilmoisturepercent = 0;
 
@@ -79,6 +79,8 @@ void loop() {
   // MEMBACA NILAI SENSOR SOIL MOISTURE
   soilMoistureValue = analogRead(A0);
   soilmoisturepercent = map(soilMoistureValue, dry, wet, 0, 100);
+
+  Serial.println(soilMoistureValue);
   
   // MEMBACA DATA DARI ARDUINO UNO
   /*if (Serial.available()>0){
@@ -109,22 +111,24 @@ void loop() {
   lcd.setCursor(9, 1);
   lcd.print("H:");
   lcd.print(soilmoisturepercent, 1);
-  lcd.print("%");
+  lcd.print("%      ");
 
   // ATUR POMPA ON/OFF BERDASARKAN NILAI SENSOR SOIL MOISTURE
-  if (soilmoisturepercent > 60){
+  if (soilmoisturepercent > 83){
     digitalWrite(relay, HIGH);
     lcd.setCursor(2, 0);
     lcd.println(" POMPA : OFF    ");
+    //lcd.println(soilMoistureValue);
     relay2 = "POMPA OFF";
   }
-  else if(soilmoisturepercent < 31){
+  else if(soilmoisturepercent < 37){
     digitalWrite(relay, LOW);
     lcd.setCursor(2, 0);
     lcd.println(" POMPA : ON    ");
+    //lcd.println(soilMoistureValue);
     relay2 = "POMPA ON";
   }
 
   thing.handle();
-  delay(200);
+  delay(500);
 }
