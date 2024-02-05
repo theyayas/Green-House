@@ -72,6 +72,7 @@ void setup() {
     out["Temperature"]  = t;
     out["Humidity"]     = soilmoisturepercent;
     out["Pompa"]        = relay2;
+    out["soilmoisture"] = soilMoistureValue; // BACA NILAI DI THINGER.IO
   };
 }
 
