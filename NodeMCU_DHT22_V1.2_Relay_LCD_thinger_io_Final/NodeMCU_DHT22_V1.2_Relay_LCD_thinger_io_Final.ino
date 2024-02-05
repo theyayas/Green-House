@@ -114,6 +114,14 @@ void loop() {
   lcd.print(soilmoisturepercent, 1);
   lcd.print("%      ");
 
+  // MENJAGA BATAS ATAS KELEMBABAN 100% DAN BATAS BAWAH 0%
+  if (soilmoisturepercent > 100){
+    soilmoisturepercent = 100;
+  }
+  else if (soilmoisturepercent < 0){
+    soilmoisturepercent = 0;
+  }
+
   // ATUR POMPA ON/OFF BERDASARKAN NILAI SENSOR SOIL MOISTURE
   if (soilmoisturepercent > 83){
     digitalWrite(relay, HIGH);
