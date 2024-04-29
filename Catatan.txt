@@ -83,3 +83,10 @@ thing["hysteresis"] << [](pson& in){
 
 hijau #00bb00
 merah #cc0000
+
+tanyagading
+
+soil moistrure 
+Data yang diperoleh menunjukkan bahwa persentase kadar air pada kondisi tanah kering yaitu dengan persentase kadar air
+0,59%-30,55% proses penyiraman dilakukan, sedangkan untuk tanah lembab dengan persentase 35,42%-70%, dan
+tanah basah dengan persentase lebih dari 71% tidak dilakukan penyiraman.
